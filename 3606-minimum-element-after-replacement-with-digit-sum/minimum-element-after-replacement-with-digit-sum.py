@@ -1,4 +1,3 @@
-
 class Solution(object):
     def minElement(self, nums):
         """
@@ -19,3 +18,4 @@ class Solution(object):
             ans = min(ans, digit_sum(num))
 
         return ans
+        
