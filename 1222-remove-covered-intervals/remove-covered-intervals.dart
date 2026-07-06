@@ -1,8 +1,10 @@
 class Solution {
   int removeCoveredIntervals(List<List<int>> intervals) {
     intervals.sort((a, b) {
-      if (a[0] == b[0]) return b[1] - a[1];
-      return a[0] - b[0];
+      if (a[0] != b[0]) {
+        return a[0].compareTo(b[0]);
+      }
+      return b[1].compareTo(a[1]);
     });
 
     int count = 0;
