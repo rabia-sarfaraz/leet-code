@@ -41,9 +41,9 @@ Constraints:
 ## Solution
 
 **Language:** dart  
-**Runtime:** 87 ms (beats 100.00%)  
-**Memory:** 195.5 MB (beats 100.00%)  
-**Submitted:** 2026-07-27T06:25:24.781Z  
+**Runtime:** 78 ms (beats 100.00%)  
+**Memory:** 193.6 MB (beats 100.00%)  
+**Submitted:** 2026-07-27T06:25:46.238Z  
 
 ```dart
 class Solution {
