@@ -6,10 +6,10 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Solved | 13 |
-| Easy | 5 |
+| Total Solved | 15 |
+| Easy | 6 |
 | Medium | 5 |
-| Hard | 3 |
+| Hard | 4 |
 | Current Streak | 7 days |
 | Last Synced | 7/27/2026 |
 
@@ -17,7 +17,7 @@
 
 | Language | Solutions |
 |----------|-----------|
-| dart | 13 |
+| dart | 15 |
 
 ---
-*Last updated: 2026-07-27T05:01:47.348Z*
+*Last updated: 2026-07-27T05:03:15.476Z*
