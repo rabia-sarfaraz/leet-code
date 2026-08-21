@@ -1,16 +1,19 @@
-class Solution:
-    def countConsistentStrings(self, allowed, words):
-        count = 0
+class Solution(object):
 
-        for word in words:
-            valid = True
+    def getSumAbsoluteDifferences(self, nums):
+        n = len(nums)
+        total = sum(nums)
+        left = 0
+        result = []
 
-            for char in word:
-                if char not in allowed:
-                    valid = False
-                    break
+        for i in range(n):
+            right = total - left - nums[i]
 
-            if valid:
-                count += 1
+            left_sum = nums[i] * i - left
+            right_sum = right - nums[i] * (n - i - 1)
 
-        return count
+            result.append(left_sum + right_sum)
+
+            left += nums[i]
+
+        return result
