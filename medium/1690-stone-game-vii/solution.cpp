@@ -1,6 +1,28 @@
-            }
-        }
+class Solution {
+public:
+    int stoneGameVII(vector<int>& stones) {
+        int n = stones.size();
 
-        return dp[0][n - 1];
-    }
+        vector<int> prefix(n + 1, 0);
+
+        for (int i = 0; i < n; i++) {
+            prefix[i + 1] = prefix[i] + stones[i];
+        }
+
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0; i + len <= n; i++) {
+                int j = i + len - 1;
+
+                int removeLeft = (prefix[j + 1] - prefix[i + 1]) - dp[i + 1][j];
+
+                int removeRight = (prefix[j] - prefix[i]) - dp[i][j - 1];
+
+                dp[i][j] = max(removeLeft, removeRight);
+            }
+        }
+
+        return dp[0][n - 1];
+    }
 };
