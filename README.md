@@ -6,9 +6,9 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Solved | 165 |
+| Total Solved | 167 |
 | Easy | 51 |
-| Medium | 73 |
+| Medium | 75 |
 | Hard | 41 |
 | Current Streak | 33 days |
 | Last Synced | 8/22/2026 |
@@ -17,11 +17,11 @@
 
 | Language | Solutions |
 |----------|-----------|
-| dart | 116 |
+| dart | 118 |
 | Python | 33 |
 | SQL | 8 |
 | C++ | 7 |
 | postgresql | 1 |
 
 ---
-*Last updated: 2026-08-22T04:09:34.033Z*
+*Last updated: 2026-08-22T04:10:48.747Z*
