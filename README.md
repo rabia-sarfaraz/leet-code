@@ -6,22 +6,22 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Solved | 222 |
+| Total Solved | 223 |
 | Easy | 67 |
 | Medium | 103 |
-| Hard | 52 |
-| Current Streak | 48 days |
-| Last Synced | 9/6/2026 |
+| Hard | 53 |
+| Current Streak | 49 days |
+| Last Synced | 9/7/2026 |
 
 ## Languages
 
 | Language | Solutions |
 |----------|-----------|
-| dart | 151 |
+| dart | 152 |
 | Python | 52 |
 | SQL | 10 |
 | C++ | 8 |
 | postgresql | 1 |
 
 ---
-*Last updated: 2026-09-06T01:05:00.915Z*
+*Last updated: 2026-09-07T03:52:38.778Z*
