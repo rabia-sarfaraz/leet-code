@@ -1,29 +1,40 @@
 class Solution {
-  static const int MOD = 1000000007;
-
   int numberOfSets(int n, int k) {
-    List<List<int>> dp = List.generate(
-      n + 1,
-      (_) => List.filled(k + 1, 0),
-    );
+    const int MOD = 1000000007;
 
-    List<List<int>> prefix = List.generate(
-      n + 1,
-      (_) => List.filled(k + 1, 0),
-    );
+    // f = currently no segment is being drawn
+    // g = currently inside a segment
+    List<int> f = List.filled(k + 1, 0);
+    List<int> g = List.filled(k + 1, 0);
 
-    for (int i = 0; i <= n; i++) {
-      dp[i][0] = 1;
-      prefix[i][0] = i + 1;
-    }
+    // Before processing points:
+    // 0 segments completed = 1 way
+    f[0] = 1;
 
-    for (int j = 1; j <= k; j++) {
-      for (int i = 1; i <= n; i++) {
-        dp[i][j] = (dp[i - 1][j] + prefix[i - 1][j - 1]) % MOD;
-        prefix[i][j] = (prefix[i - 1][j] + dp[i][j]) % MOD;
+    for (int i = 2; i <= n; i++) {
+      List<int> newF = List.filled(k + 1, 0);
+      List<int> newG = List.filled(k + 1, 0);
+
+      for (int j = 0; j <= k; j++) {
+        // Don't draw a segment at this point
+        newF[j] = (f[j] + g[j]) % MOD;
+
+        // Continue an existing segment
+        newG[j] = g[j];
+
+        if (j > 0) {
+          // Start a new segment
+          newG[j] = (newG[j] + f[j - 1]) % MOD;
+
+          // Finish current segment and start/continue appropriately
+          newG[j] = (newG[j] + g[j - 1]) % MOD;
+        }
       }
+
+      f = newF;
+      g = newG;
     }
 
-    return dp[n - 1][k];
+    return (f[k] + g[k]) % MOD;
   }
 }
