@@ -4,112 +4,111 @@
 
 ## Problem
 
-You are given a string s that contains some bracket pairs, with each pair containing a non-empty key.
+You are given a string `s` that contains some bracket pairs, with each pair containing a **non-empty** key.
 
+- For example, in the string "(name)is(age)yearsold", there are two bracket pairs that contain the keys "name" and "age".
 
-	For example, in the string "(name)is(age)yearsold", there are two bracket pairs that contain the keys "name" and "age".
+You know the values of a wide range of keys. This is represented by a 2D string array `knowledge` where each `knowledge[i] = [keyi, valuei]` indicates that key `keyi` has a value of `valuei`.
 
+You are tasked to evaluate **all** of the bracket pairs. When you evaluate a bracket pair that contains some key `keyi`, you will:
 
-You know the values of a wide range of keys. This is represented by a 2D string array knowledge where each knowledge[i] = [keyi, valuei] indicates that key keyi has a value of valuei.
+- Replace keyi and the bracket pair with the key's corresponding valuei.
+- If you do not know the value of the key, you will replace keyi and the bracket pair with a question mark "?" (without the quotation marks).
 
-You are tasked to evaluate all of the bracket pairs. When you evaluate a bracket pair that contains some key keyi, you will:
+Each key will appear at most once in your `knowledge`. There will not be any nested brackets in `s`.
 
-
-	Replace keyi and the bracket pair with the key's corresponding valuei.
-	If you do not know the value of the key, you will replace keyi and the bracket pair with a question mark "?" (without the quotation marks).
-
-
-Each key will appear at most once in your knowledge. There will not be any nested brackets in s.
-
-Return the resulting string after evaluating all of the bracket pairs.
+Return *the resulting string after evaluating **all** of the bracket pairs.*
 
  
-Example 1:
 
+**Example 1:**
+
+```
 Input: s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]
 Output: "bobistwoyearsold"
 Explanation:
 The key "name" has a value of "bob", so replace "(name)" with "bob".
 The key "age" has a value of "two", so replace "(age)" with "two".
 
+```
 
-Example 2:
+**Example 2:**
 
+```
 Input: s = "hi(name)", knowledge = [["a","b"]]
 Output: "hi?"
 Explanation: As you do not know the value of the key "name", replace "(name)" with "?".
 
+```
 
-Example 3:
+**Example 3:**
 
+```
 Input: s = "(a)(a)(a)aaa", knowledge = [["a","yes"]]
 Output: "yesyesyesaaa"
 Explanation: The same key can appear multiple times.
 The key "a" has a value of "yes", so replace all occurrences of "(a)" with "yes".
 Notice that the "a"s not in a bracket pair are not evaluated.
 
+```
 
  
-Constraints:
 
+**Constraints:**
 
-	1 <= s.length <= 105
-	0 <= knowledge.length <= 105
-	knowledge[i].length == 2
-	1 <= keyi.length, valuei.length <= 10
-	s consists of lowercase English letters and round brackets '(' and ')'.
-	Every open bracket '(' in s will have a corresponding close bracket ')'.
-	The key in each bracket pair of s will be non-empty.
-	There will not be any nested bracket pairs in s.
-	keyi and valuei consist of lowercase English letters.
-	Each keyi in knowledge is unique.
+- 1 <= s.length <= 105
+- 0 <= knowledge.length <= 105
+- knowledge[i].length == 2
+- 1 <= keyi.length, valuei.length <= 10
+- s consists of lowercase English letters and round brackets '(' and ')'.
+- Every open bracket '(' in s will have a corresponding close bracket ')'.
+- The key in each bracket pair of s will be non-empty.
+- There will not be any nested bracket pairs in s.
+- keyi and valuei consist of lowercase English letters.
+- Each keyi in knowledge is unique.
 
 ## Solution
 
-**Language:** Python  
-**Runtime:** 79 ms (beats 80.00%)  
-**Memory:** 55.7 MB (beats 100.00%)  
-**Submitted:** 2026-08-24T03:29:25.155Z  
+**Language:** dart  
+**Runtime:** 44 ms (beats 100.00%)  
+**Memory:** 213.1 MB (beats 100.00%)  
+**Submitted:** 2026-09-26T04:45:27.498Z  
 
-```py
-class Solution(object):
-    def evaluate(self, s, knowledge):
-        """
-        :type s: str
-        :type knowledge: List[List[str]]
-        :rtype: str
-        """
+```dart
+class Solution {
+  String evaluate(String s, List<List<String>> knowledge) {
+    Map<String, String> map = {};
 
-        # Convert knowledge into dictionary
-        data = {}
+    for (final pair in knowledge) {
+      map[pair[0]] = pair[1];
+    }
 
-        for key, value in knowledge:
-            data[key] = value
+    StringBuffer result = StringBuffer();
 
-        result = []
-        i = 0
+    int i = 0;
 
-        while i < len(s):
-            if s[i] == '(':
-                j = i + 1
+    while (i < s.length) {
+      if (s[i] == '(') {
+        int j = i + 1;
 
-                while s[j] != ')':
-                    j += 1
+        while (s[j] != ')') {
+          j++;
+        }
 
-                key = s[i + 1:j]
+        String key = s.substring(i + 1, j);
 
-                if key in data:
-                    result.append(data[key])
-                else:
-                    result.append('?')
+        result.write(map[key] ?? '?');
 
-                i = j + 1
+        i = j + 1;
+      } else {
+        result.write(s[i]);
+        i++;
+      }
+    }
 
-            else:
-                result.append(s[i])
-                i += 1
-
-        return ''.join(result)
+    return result.toString();
+  }
+}
 ```
 
 ---
