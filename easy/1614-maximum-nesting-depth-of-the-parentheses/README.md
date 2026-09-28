@@ -4,72 +4,69 @@
 
 ## Problem
 
-Given a valid parentheses string s, return the nesting depth of s. The nesting depth is the maximum number of nested parentheses.
+Given a **valid parentheses string** `s`, return the **nesting depth** of `s`. The nesting depth is the **maximum** number of nested parentheses.
 
  
-Example 1:
 
+**Example 1:**
 
-Input: s = "(1+(2*3)+((8)/4))+1"
+**Input:** s = "(1+(2*3)+((8)/4))+1"
 
-Output: 3
+**Output:** 3
 
-Explanation:
+**Explanation:**
 
 Digit 8 is inside of 3 nested parentheses in the string.
 
+**Example 2:**
 
-Example 2:
+**Input:** s = "(1)+((2))+(((3)))"
 
+**Output:** 3
 
-Input: s = "(1)+((2))+(((3)))"
-
-Output: 3
-
-Explanation:
+**Explanation:**
 
 Digit 3 is inside of 3 nested parentheses in the string.
 
+**Example 3:**
 
-Example 3:
+**Input:** s = "()(())((()()))"
 
-
-Input: s = "()(())((()()))"
-
-Output: 3
-
+**Output:** 3
 
  
-Constraints:
 
+**Constraints:**
 
-	1 <= s.length <= 100
-	s consists of digits 0-9 and characters '+', '-', '*', '/', '(', and ')'.
-	It is guaranteed that parentheses expression s is a VPS.
+- 1 <= s.length <= 100
+- s consists of digits 0-9 and characters '+', '-', '*', '/', '(', and ')'.
+- It is guaranteed that parentheses expression s is a VPS.
 
 ## Solution
 
 **Language:** dart  
-**Runtime:** 1 ms (beats 37.50%)  
-**Memory:** 147.8 MB (beats 87.50%)  
-**Submitted:** 2026-07-27T05:47:06.352Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 149.8 MB (beats 100.00%)  
+**Submitted:** 2026-09-28T05:59:19.430Z  
 
 ```dart
 class Solution {
   int maxDepth(String s) {
     int depth = 0;
-    int ans = 0;
+    int maxDepth = 0;
 
     for (int i = 0; i < s.length; i++) {
       if (s[i] == '(') {
         depth++;
-        if (depth > ans) ans = depth;
+        if (depth > maxDepth) {
+          maxDepth = depth;
+        }
       } else if (s[i] == ')') {
         depth--;
       }
     }
 
-    return ans;
+    return maxDepth;
   }
 }
 ```
